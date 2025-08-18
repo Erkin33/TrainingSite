@@ -6,6 +6,7 @@ export default function WhyUs() {
     { img: "/Icons/Icon-4.svg", head: "Lorem Ipsum amid", text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod" },
   ];
 
+  
   return (
     <section
       aria-labelledby="why-title"
