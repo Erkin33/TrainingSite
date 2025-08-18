@@ -1,9 +1,24 @@
-import Image from "next/image";
-
+import MainItems from "@/components/Main";
+import Status from "@/components/status";
+import WhyUs from "@/components/Why-chooseUs";
+import Coaches from "@/components/Coaches";
+import OurTrainers from "@/components/Trainers";
+import PricingPlan from "@/components/PricingPlan";
+import ReviewsSection from "@/components/Reviews";
+import ContactUs from "@/components/Contact";
+import Footer from "@/components/Footer";
 export default function Home() {
   return (
-    <div className="font-sans grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20">
-      
+    <div className="w-full flex flex-col">
+      <MainItems/>
+      <Status/>
+      <WhyUs/>
+      <Coaches/>
+      <OurTrainers/>
+      <PricingPlan/>
+      <ReviewsSection/>
+      <ContactUs/>
+      <Footer/>
     </div>
   );
 }
