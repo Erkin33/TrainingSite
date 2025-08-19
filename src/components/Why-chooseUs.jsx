@@ -1,7 +1,7 @@
 export default function WhyUs() {
   const chosen = [
     { img: "/Icons/Icon-1.svg", head: "Lorem Ipsum amid", text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod" },
-    { img: "/Icons/Icon-2.svg", head: "Lorem Ipsum amid", text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod" },
+    { img: "/Icons/Icon-22.svg", head: "Lorem Ipsum amid", text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod" },
     { img: "/Icons/Icon-3.svg", head: "Lorem Ipsum amid", text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod" },
     { img: "/Icons/Icon-4.svg", head: "Lorem Ipsum amid", text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod" },
   ];
