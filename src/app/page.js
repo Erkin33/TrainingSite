@@ -7,6 +7,7 @@ import PricingPlan from "@/components/PricingPlan";
 import ReviewsSection from "@/components/Reviews";
 import ContactUs from "@/components/Contact";
 import Footer from "@/components/Footer";
+import BackToTop from "@/components/Top";
 export default function Home() {
   return (
     <div className="w-full flex flex-col">
@@ -19,6 +20,7 @@ export default function Home() {
       <ReviewsSection/>
       <ContactUs/>
       <Footer/>
+      <BackToTop/>
     </div>
   );
 }

@@ -4,13 +4,20 @@ import { useEffect, useState } from "react";
 
 export default function MainItems(){
   const Menu = [
-    { text:"Home", href:"#Home" },
+    { text:"Home", href:"#" },
     { text:"About", href:"#About" },
     { text:"Services", href:"#Services" },
     { text:"Contact", href:"#Contact" },
   ];
 
   const [open, setOpen] = useState(false);
+
+  // глобально включаем плавный скролл
+  useEffect(() => {
+    const prev = document.documentElement.style.scrollBehavior;
+    document.documentElement.style.scrollBehavior = "smooth";
+    return () => { document.documentElement.style.scrollBehavior = prev; };
+  }, []);
 
   // Esc + блок скролла при открытом меню
   useEffect(() => {
@@ -23,17 +30,46 @@ export default function MainItems(){
     };
   }, [open]);
 
+  // хелпер плавного скролла с учётом верхнего отступа
+  const smoothScrollTo = (hash) => {
+    if (!hash || hash === "#") {
+      window.scrollTo({ top: 0, behavior: "smooth" });
+      return;
+    }
+    const el = document.querySelector(hash);
+    if (!el) return;
+
+    // примерная высота возможной шапки/отступа
+    const headerOffset = 80;
+    const rect = el.getBoundingClientRect();
+    const targetY = window.pageYOffset + rect.top - headerOffset;
+
+    window.scrollTo({ top: Math.max(0, targetY), behavior: "smooth" });
+
+    // доступность: переведём фокус в секцию (без скачка)
+    let added = false;
+    if (!el.hasAttribute("tabindex")) { el.setAttribute("tabindex", "-1"); added = true; }
+    setTimeout(() => {
+      try { el.focus({ preventScroll: true }); } catch {}
+      if (added) el.removeAttribute("tabindex");
+    }, 350);
+  };
+
+  const onNavClick = (e, href) => {
+    e.preventDefault();
+    smoothScrollTo(href);
+    setOpen(false);
+  };
+
   return (
     <div
+      id="Home"
       className="
+        scroll-smooth
         w-full h-[850px] bg-[url(/Main/MainBanner.svg)] bg-cover bg-no-repeat flex flex-col
-        /* <=1440: центр фона и ниже высота */
         max-[1440px]:h-[760px] max-[1440px]:bg-center
-        /* <=1280 */
         max-[1280px]:h-[680px]
-        /* <=1024: заметно меньше баннер */
         max-[1024px]:h-[560px]
-        /* далее ступеньки */
         max-[840px]:h-[500px]
         max-[640px]:h-[460px]
         max-[480px]:h-[440px]
@@ -78,6 +114,7 @@ export default function MainItems(){
             <div key={i} className="relative group w-[75px] h-[22px] max-[1440px]:w-auto">
               <a
                 href={m.href}
+                onClick={(e) => onNavClick(e, m.href)}
                 className="
                   block font-semibold text-[16px] text-[#9E9E9E]
                   transition-colors duration-300 ease-in-out group-hover:text-white
@@ -285,7 +322,7 @@ export default function MainItems(){
               <li key={i}>
                 <a
                   href={m.href}
-                  onClick={() => setOpen(false)}
+                  onClick={(e) => onNavClick(e, m.href)}
                   className="
                     block px-3 py-3 rounded-[10px]
                     text-[16px] font-semibold text-[#212121]

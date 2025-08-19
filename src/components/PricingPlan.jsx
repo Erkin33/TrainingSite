@@ -77,7 +77,7 @@ export default function PricingPlan() {
   };
 
   return (
-    <div
+    <div id="Services"
       className="
         w-full h-[850px] flex justify-center items-center
         max-[1440px]:h-auto max-[1440px]:py-[80px]

@@ -1,6 +1,6 @@
 export default function ContactUs() {
   return (
-    <section
+    <section id="Contact"
       aria-labelledby="contactus-title"
       className="relative w-full"
     >
